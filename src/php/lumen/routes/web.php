@@ -15,10 +15,13 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
+
+$router->get('endlessrunner', ['uses' => 'ScoreController@gameView']);
+
 // Define our API route group.
 $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('scores', ['uses' => 'ScoreController@showAllScores']);
     $router->get('scores/{seed}', ['uses' => 'ScoreController@showSeedScores']);
     $router->post('scores', ['uses' => 'ScoreController@submitScore']);
-    $router->delete('scores/{id}', ['uses' => 'ScoreController@deleteScore']);
+    // $router->delete('scores/{id}', ['uses' => 'ScoreController@deleteScore']);
 });
