@@ -26,7 +26,7 @@
             <div class="col-lg-3">
                 <h3 class="text-center">Todays Scores</h3>
                 @if(count($todaysScores) > 0)
-                <table class="table">
+                <table class="table table-sm table-hover">
                     <tr>
                         <th>Score</th>
                         <th>Name</th>
@@ -56,7 +56,7 @@
             <div class="col-lg-3">
                 <h3 class="text-center">Yesterdays Scores</h3>
                 @if(count($todaysScores) > 0)
-                <table class="table">
+                <table class="table table-sm table-hover">
                     <tr>
                         <th>Score</th>
                         <th>Name</th>
