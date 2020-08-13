@@ -29,7 +29,7 @@
                 <table class="table table-sm table-hover">
                     <tr>
                         <th>Score</th>
-                        <th>Name</th>
+                        <th>Player</th>
                     </tr>
                     @foreach ($todaysScores as $scores)
                     <tr>
@@ -59,7 +59,7 @@
                 <table class="table table-sm table-hover">
                     <tr>
                         <th>Score</th>
-                        <th>Name</th>
+                        <th>Player</th>
                     </tr>
                     @foreach ($yesterdaysScores as $scores)
                     <tr>
