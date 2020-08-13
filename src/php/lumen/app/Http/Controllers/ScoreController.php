@@ -48,13 +48,13 @@ class ScoreController extends Controller
         $seed = $this->getSeed();
         $todaysScores = Score::where('seed_key', $seed)
             ->orderBy("score", "desc")
-            ->take(10)
+            ->take(15)
             ->get();
 
         $seed = $this->getSeed(Carbon::now()->subtract(1, 'day')->format('d-m-Y'));
         $yesterdaysScores = Score::where('seed_key', $seed)
             ->orderBy("score", "desc")
-            ->take(10)
+            ->take(15)
             ->get();
 
         $data["todaysScores"] = $todaysScores;

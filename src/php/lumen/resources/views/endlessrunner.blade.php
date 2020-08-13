@@ -24,17 +24,17 @@
         </div>
         <div class="row">
             <div class="col-lg-3">
-                <h3 class="text-center">Todays Scores</h3>
+                <h3 class="text-center">Todays Top Scores</h3>
                 @if(count($todaysScores) > 0)
-                <table class="table table-sm table-hover">
+                <table class="table table-sm table-hover text-right">
                     <tr>
-                        <th>Score</th>
                         <th>Player</th>
+                        <th>Score</th>
                     </tr>
                     @foreach ($todaysScores as $scores)
                     <tr>
+                        <td>{{\Illuminate\Support\Str::limit($scores->name, 15, '...')}}</td>
                         <td>{{$scores->score}}</td>
-                        <td>{{$scores->name}}</td>
                     </tr>
                     @endforeach
                 </table>
@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div class="col-lg-3">
-                <h3 class="text-center">Yesterdays Scores</h3>
+                <h3 class="text-center">Yesterdays Top Scores</h3>
                 @if(count($todaysScores) > 0)
                 <table class="table table-sm table-hover">
                     <tr>
@@ -64,7 +64,7 @@
                     @foreach ($yesterdaysScores as $scores)
                     <tr>
                         <td>{{$scores->score}}</td>
-                        <td>{{$scores->name}}</td>
+                        <td>{{\Illuminate\Support\Str::limit($scores->name, 15, '...')}}</td>
                     </tr>
                     @endforeach
                 </table>
