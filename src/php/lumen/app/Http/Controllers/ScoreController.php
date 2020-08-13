@@ -46,19 +46,25 @@ class ScoreController extends Controller
     {
         // Returns the blade with the unity game embedded in it, along with the recent scores around the edge of it.
         $seed = $this->getSeed();
-        $scores = Score::where('seed_key', $seed)
+        $todaysScores = Score::where('seed_key', $seed)
             ->orderBy("score", "desc")
             ->take(10)
             ->get();
 
-        $data["seed"] = $seed;
-        $data["todaysScores"] = $scores;
+        $seed = $this->getSeed(Carbon::now()->subtract(1, 'day')->format('d-m-Y'));
+        $yesterdaysScores = Score::where('seed_key', $seed)
+            ->orderBy("score", "desc")
+            ->take(10)
+            ->get();
+
+        $data["todaysScores"] = $todaysScores;
+        $data["yesterdaysScores"] = $yesterdaysScores;
 
 
         return view('endlessrunner', $data);
     }
 
-    public function getSeed(Date $date = null)
+    public function getSeed(string $date = null)
     {
         // Returns the seed for the given date, or today if none given.
         // Date needs to be in the format of dd-mm-yyyy.
