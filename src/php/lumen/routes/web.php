@@ -16,7 +16,7 @@ $router->get('/', function () use ($router) {
 });
 
 // Define our API route group.
-$router->group(['prefix' => 'api'], function () use ($router) {
+$router->group(['prefix' => 'endlessrunner'], function () use ($router) {
     $router->get('scores', ['uses' => 'ScoreController@showAllScores']);
     $router->get('scores/{seed}', ['uses' => 'ScoreController@showSeedScores']);
     $router->post('scores', ['uses' => 'ScoreController@submitScore']);
