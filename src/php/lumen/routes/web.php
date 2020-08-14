@@ -15,9 +15,6 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-
-$router->get('endlessrunner', ['uses' => 'ScoreController@gameView']);
-
 // Define our API route group.
 $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('scores', ['uses' => 'ScoreController@showAllScores']);

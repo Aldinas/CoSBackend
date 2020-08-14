@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Score;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Date;
 
 class ScoreController extends Controller
 {
@@ -20,7 +19,7 @@ class ScoreController extends Controller
     {
         return response()->json(Score::where('seed_key', $seed)
             ->orderBy("score", "desc")
-            ->take(10)
+            ->take(100)
             ->get());
     }
 
@@ -40,40 +39,5 @@ class ScoreController extends Controller
     {
         Score::findOrFail($id)->delete();
         return  response('Poof! It\'s gone!', 200);
-    }
-
-    public function gameView()
-    {
-        // Returns the blade with the unity game embedded in it, along with the recent scores around the edge of it.
-        $seed = $this->getSeed();
-        $todaysScores = Score::where('seed_key', $seed)
-            ->orderBy("score", "desc")
-            ->take(12)
-            ->get();
-
-        $seed = $this->getSeed(Carbon::now()->subtract(1, 'day')->format('d-m-Y'));
-        $yesterdaysScores = Score::where('seed_key', $seed)
-            ->orderBy("score", "desc")
-            ->take(12)
-            ->get();
-
-        $data["todaysScores"] = $todaysScores;
-        $data["yesterdaysScores"] = $yesterdaysScores;
-
-
-        return view('endlessrunner', $data);
-    }
-
-    public function getSeed(string $date = null)
-    {
-        // Returns the seed for the given date, or today if none given.
-        // Date needs to be in the format of dd-mm-yyyy.
-        if($date == null)
-        {
-            $date = Carbon::now()->format('d-m-Y');
-        }
-
-        $cleanDate = str_replace("-", "", $date);
-        return $cleanDate;
     }
 }
