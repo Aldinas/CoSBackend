@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:5.7
+    ports:
+      - "8082:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: secret1
+      MYSQL_DATABASE: cos_backend
+  web:
+    build:
+      context: .
+      dockerfile: dockerfile.dev
+    ports:
+      - "8081:80"
+    volumes:
+      - .:/var/www/html
+      - /var/www/html/vendor
+    depends_on:
+      - "db"

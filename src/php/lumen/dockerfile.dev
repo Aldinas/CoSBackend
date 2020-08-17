@@ -1,0 +1,18 @@
+# Using PHP 7.3 official image, Apache build.
+FROM php:7.3-apache
+# Set apache root to be public dir since its Lumen.
+ENV APACHE_DOCUMENT_ROOT /var/www/html/public
+# Enable mod-rewrite and PDO_Mysql extension (Required for Lumen routing and DB access)
+RUN a2enmod rewrite
+RUN docker-php-ext-install pdo_mysql
+# Install git and allow zip / unizp (technologic!)
+RUN apt-get update -y && apt-get install git zip unzip -y
+# Rewrite docroot to match the required one sent in the env.
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+
+# Copy over our files and then fire up the ol' composer.
+COPY . /var/www/html/
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+RUN composer install
