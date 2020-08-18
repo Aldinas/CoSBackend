@@ -11,9 +11,13 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
+// $router->get('/', function () use ($router) {
+//     return $router->app->version();
+// });
+
+$router->get('hello', function () use ($router) {
+        return "hello world";
+    });
 
 // Define our API route group.
 $router->group(['prefix' => 'endlessrunner'], function () use ($router) {
