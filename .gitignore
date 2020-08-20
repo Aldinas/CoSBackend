@@ -1,7 +1,7 @@
-/src/php/lumen/vendor
-/src/php/lumen/.idea
-/src/php/lumen/Homestead.json
-/src/php/lumen/Homestead.yaml
-/src/php/lumen/.env
-serverless-output.yaml
-
+/vendor
+/.idea
+Homestead.json
+Homestead.yaml
+.env
+.phpunit.result.cache
+public/erbuild
