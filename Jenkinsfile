@@ -9,6 +9,7 @@ pipeline {
             steps {
                 sh 'php --version'
                 sh 'composer --version'
+                sh 'hostname'
             }
         }
     }
