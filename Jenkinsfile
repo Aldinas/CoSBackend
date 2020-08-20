@@ -2,7 +2,7 @@ pipeline {
         triggers {
             pollSCM('H/5 * * * *')
         }
-        agent {docker true}
+        agent {dockerfile true}
     stages {
         stage('Test') {
             agent {
