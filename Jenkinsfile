@@ -13,7 +13,9 @@ pipeline {
             steps {
                 sh 'php --version'
                 sh 'composer --version'
-                def response = sh(script: 'curl http://localhost:8081/endlessrunner/score', returnStdout: true)
+                script {
+                    def response = sh(script: 'curl http://localhost:8081/endlessrunner/score', returnStdout: true)
+                }
                 echo response;
             }
         }
