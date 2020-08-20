@@ -1,14 +1,10 @@
 pipeline {
-    agent
-    {
-        dockerfile
-        {
+    agent {
+        dockerfile {
             filename 'dockerfile.dev'
         }
-        stages
-        {
-            stage('Test')
-            {
+        stages {
+            stage('Test') {
                 steps {
                     sh 'php --version'
                     sh 'composer --version'
