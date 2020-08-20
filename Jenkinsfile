@@ -2,6 +2,7 @@ pipeline {
         triggers {
             pollSCM('H/5 * * * *')
         }
+        agent { {dockerifle true} }
     stages {
         stage('Test') {
             agent {
