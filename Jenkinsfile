@@ -13,15 +13,16 @@ pipeline {
             steps {
                 sh 'php --version'
                 sh 'composer --version'
-                sh 'hostname'
+                def response = sh(script: 'curl http://localhost:8081/endlessrunner/score', returnStdout: true)
+                echo response;
             }
         }
-        stage('Production') {
-            steps {
-                sh 'php --version'
-                sh 'composer --version'
-                sh 'hostname'
-            }
-        }
+        // stage('Production') {
+        //     steps {
+        //         sh 'php --version'
+        //         sh 'composer --version'
+        //         sh 'hostname'
+        //     }
+        // }
     }
 }
