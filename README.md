@@ -1,3 +1,17 @@
+# Closed on Sundays Game Score Backend API
+## Requirements
+In order to build and test this framework you will need Docker Engine 18 or higher and Docker Compose 1.25 or higher. It may work on older versions but is untested. 
+
+## Usage
+1. Clone the repo.
+1. Navigate to the cloned repo copy .env.example to create a .env file.
+1. Open a terminal and navigate to the cloned Repo. Run `docker-compose up -d`. This will start the required containers and detach from them. 
+1. Run the command `docker-compose exec web php artisan key:generate` to create an application key. This will only need to be done the first time you run the application.
+1. Confirm that the API works by opening a browser and navigating to http://localhost:8081/hello
+1. You should get the message "Hello World" echoed to screen.
+1. Before going further, run the command `docker-compose exec web php artisan migrate --seed` to seed the database with some example data.
+1. In your browser, navigate to http://localhost:8081/endlessrunner/scores to see a JSON list generated of the scores from the database.
+
 # Lumen PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)

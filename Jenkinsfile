@@ -15,7 +15,7 @@ pipeline {
                 sh 'composer --version'
                 sh 'php artisan migrate --seed'
                 script {
-                    def response = sh(script: 'curl http://localhost:8081/endlessrunner/score', returnStdout: true)
+                    def response = sh(script: 'curl http://localhost/endlessrunner/score', returnStdout: true)
                 }
                 echo response;
             }
